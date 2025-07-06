@@ -1,8 +1,6 @@
-from dataclasses import dataclass
+from pydantic import BaseModel
 
-
-@dataclass 
-class LocationObject: 
+class LocationObject(BaseModel):
     qr_code: str
     name: str
     latitude: float
