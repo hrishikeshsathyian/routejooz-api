@@ -1,5 +1,6 @@
-from fastapi import FastAPI
-from db.queries import get_all_locations
+from fastapi import FastAPI, HTTPException
+from db.queries import add_locations_to_db
+from preprocessing.parser import parse_raw_data
 
 app = FastAPI()
 
@@ -7,7 +8,9 @@ app = FastAPI()
 async def ping():
     return {"message": "Hello, World!"}
 
-@app.get("/locations")
+@app.put("/locations")
 async def locations():
-    locations = get_all_locations()
-    return locations.data
+    locations = parse_raw_data()
+    response = add_locations_to_db(locations)
+    return response
+   
