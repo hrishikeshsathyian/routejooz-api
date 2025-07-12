@@ -41,7 +41,7 @@ def generate_haversine_distance_matrix(filename: str = "preprocessing/locations_
 # 360: [(358, 0.0), (348, 0.0), (177, 0.42029514223399395), (128, 0.4248738719492289), (20, 0.5274286067933707), (86, 0.5274286067933707), (343, 0.5355846232047573), (349, 0.5355846232047573), (174, 0.5430170348560918), (235, 2.2968920826002712), (171, 2.301869839818027)]
 def get_k_closest_locations(distance_df: pd.DataFrame, k:int = 10) -> dict: 
     closest = {} 
-    for i in distance_df.index: 
+    for i in distance_df.index[: 2]: 
         sorted_neighbors = distance_df.loc[i].sort_values()
         nearest = sorted_neighbors[sorted_neighbors.index != i][: k + 1]
         # Store: key = source location index, value = list of (neighbor_index, distance)
@@ -54,5 +54,9 @@ def update_k_closest_locations(distance_df: pd.DataFrame,index_to_qr: dict, k:in
     for k, v in closest.items():
         root_qr = index_to_qr[k]
         neighbours = [index_to_qr[neighbor_index] for neighbor_index, _ in v]
+        for n in neighbours: 
+            gmaps.distance_matrix(origins=root_qr, destinations=neighbours, mode="walking", language="en", units="metric")
         print(f"Location {root_qr} closest neighbors: {neighbours}")
    
+distance_df, index_to_qrcode, qrcode_to_index = generate_haversine_distance_matrix()
+print(get_k_closest_locations(distance_df, 10))
