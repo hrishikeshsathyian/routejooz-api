@@ -10,7 +10,7 @@ async def ping():
 
 @app.put("/locations")
 async def locations():
-    locations = parse_raw_data()
+    locations, _ = parse_raw_data()
     response = add_locations_to_db(locations)
     return response
    
