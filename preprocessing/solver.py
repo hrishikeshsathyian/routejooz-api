@@ -1,4 +1,4 @@
-from matrix import * 
+from preprocessing.matrix import * 
 from ortools.constraint_solver import routing_enums_pb2
 from ortools.constraint_solver import pywrapcp
 import folium
@@ -79,7 +79,7 @@ def print_solution(num_vehicles, manager, routing, solution, index_to_postal):
     return res
 
 
-def main(num_vehicles: int): 
+def solve(num_vehicles: int): 
     print("Step 1: Starting OR-Tools Vehicle Routing Problem Solver...")
 
     index_to_postal, _, postal_to_coords = generate_util_mappings()
@@ -128,10 +128,14 @@ def main(num_vehicles: int):
     print("Step 3: Solving the routing problem...")
     solution = routing.SolveWithParameters(search_parameters)
     if solution:
+        print("Step 4: Solution found!")
         res = print_solution(num_vehicles, manager, routing, solution, index_to_postal)
         visualize_routes(res, postal_to_coords)
-        print("Step 4: Solution found!")
-        print("Routes:", res)
+        coords_res = []
+        for route in res: 
+            route = list(map(lambda x: postal_to_coords[x] if x in postal_to_coords else None, route))
+            coords_res.append(route)
+        return coords_res
     else:
         print("No solution found !")
         return
@@ -139,5 +143,5 @@ def main(num_vehicles: int):
 
 
 if __name__ == "__main__":
-    print("Executing OR-Tools Vehicle Routing Problem Solver...")
-    main(3)
+    print("Executing OR-Tools Vehicle Routing Problem Solver in file...")
+    solve(num_vehicles=3)
