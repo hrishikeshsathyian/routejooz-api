@@ -115,11 +115,12 @@ def update_k_closest_locations(distance_df: pd.DataFrame,index_to_postal: dict, 
                 neighbour_index = neighbours[i][0]
                 if data[i]["status"] == "OK":
                     time_taken = data[i]["duration_in_traffic"]["value"]  
-                    distance_df.iat[origin_id, neighbour_index] = time_taken / 60.0  
+                    distance_df.iat[origin_id, neighbour_index] = time_taken / 60.0 
+                    distance_df.iat[neighbour_index, origin_id] = time_taken / 60.0  
                 else:
                     print(f"Skipping {origin_id} ||| {neighbour_index}, status: {data[i]['status']}")
 
-
+            
         except googlemaps.exceptions.ApiError as e:
             print(f"Error fetching distance matrix Google Maps API Error: {e}")
             continue
