@@ -33,9 +33,10 @@ This repo serves as the **backend** for the [IJooz Route Optimisation Platform](
 ## About the Project
 
 ### How It Works
-The backend process can be broken down into 3 main parts: Preprocessing, Matrix Generation, Route Optimization 
+The backend process can be broken down into 3 main parts: <br>**Preprocessing, Cost Matrix Generation, Route Optimization**
 
-Preprocessing - Given a CSV files of vending machines' IDs and their postal codes.
+1. *Preprocessing* - Given a CSV files of vending machines' IDs and their postal codes, the backend geocodes the postal codes into latitude and longitude coordinates while ensuring the depot as the first location 
+2. *Cost Matrix Generation* - First generates a NxN matrix using haversine distance between each pair and only updates
 
 
 ### Built With
