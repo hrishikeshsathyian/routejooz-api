@@ -21,7 +21,11 @@ def generate_util_mappings(filename: str = "preprocessing/locations_rows.csv") -
         row['postal_code']: (row['latitude'], row['longitude'])
         for _, row in df.iterrows()
     }
-    return index_to_postal, postal_to_index, postal_to_coords
+    postal_to_qrcode = {
+        row['postal_code']: row['qr_code']
+        for _, row in df.iterrows()
+    }
+    return index_to_postal, postal_to_index, postal_to_coords, postal_to_qrcode
 
 
 def haversine_matrix(lat1, lon1, lat2, lon2):

@@ -32,6 +32,7 @@ def visualize_routes(res, postal_to_coords, map_filename="routes_map.html"):
 def print_solution(num_vehicles, manager, routing, solution, index_to_postal):
     max_route_time = 0
     total_route_time = 0  
+    times = []
     res = []
     for vehicle_id in range(num_vehicles):
         if not routing.IsVehicleUsed(solution, vehicle_id):
@@ -63,6 +64,7 @@ def print_solution(num_vehicles, manager, routing, solution, index_to_postal):
         minutes = (route_time % 3600) // 60
         plan_output += f"Total time of the route: {hours}h {minutes}m \n"
         print(plan_output)
+        times.append(route_time)
 
         total_route_time += route_time
         max_route_time = max(route_time, max_route_time)
@@ -76,13 +78,13 @@ def print_solution(num_vehicles, manager, routing, solution, index_to_postal):
     max_minutes = (max_route_time % 3600) // 60
     print(f"Maximum single vehicle route time: {max_hours}h {max_minutes}m")
 
-    return res
+    return res, times, total_route_time, max_route_time
 
 
 def solve(num_vehicles: int): 
     print("Step 1: Starting OR-Tools Vehicle Routing Problem Solver...")
 
-    index_to_postal, _, postal_to_coords = generate_util_mappings()
+    index_to_postal, _, postal_to_coords, postal_to_qrcode = generate_util_mappings()
     distance_df = generate_haversine_distance_matrix()
     data = update_k_closest_locations(distance_df, index_to_postal, postal_to_coords)
     data = data * 60  # minutes to seconds
@@ -108,7 +110,7 @@ def solve(num_vehicles: int):
     routing.SetArcCostEvaluatorOfAllVehicles(transit_callback_index)
 
     dimension_name = "Time"
-    max_travel_time = 3 * 60 * 60 
+    max_travel_time = 3 * 60 * 60 # set back to 3 * 60 * 60 if we are allowing more drivers 
     routing.AddDimension(
         transit_callback_index,
         0,  # IMPORTANT: for now, assume no waiting/slack time
@@ -129,13 +131,24 @@ def solve(num_vehicles: int):
     solution = routing.SolveWithParameters(search_parameters)
     if solution:
         print("Step 4: Solution found!")
-        res = print_solution(num_vehicles, manager, routing, solution, index_to_postal)
+        res, times, total_route_time, max_route_time = print_solution(num_vehicles, manager, routing, solution, index_to_postal)
         visualize_routes(res, postal_to_coords)
         coords_res = []
-        for route in res: 
-            route = list(map(lambda x: postal_to_coords[x] if x in postal_to_coords else None, route))
-            coords_res.append(route)
-        return coords_res
+
+        for route in res:
+            new_route = []
+            for postal in route:
+                if postal in postal_to_coords and postal in postal_to_qrcode:
+                    new_route.append({
+                        "address": postal,
+                        "lat": postal_to_coords[postal][0],
+                        "lng": postal_to_coords[postal][1],
+                        "name": postal_to_qrcode[postal]
+                    })
+            coords_res.append(new_route)
+
+        return {"coords_res": coords_res, "times": times, "total_route_time": total_route_time, "max_route_time": max_route_time}
+
     else:
         print("No solution found !")
         return
@@ -144,4 +157,4 @@ def solve(num_vehicles: int):
 
 if __name__ == "__main__":
     print("Executing OR-Tools Vehicle Routing Problem Solver in file...")
-    solve(num_vehicles=3)
+    solve(num_vehicles=3) # default 3 vehicles for local development

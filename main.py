@@ -25,7 +25,12 @@ async def locations():
     response = add_locations_to_db(locations)
     return response
 
-@app.get("/solve")
-async def solver(num_vehicles: int = 3): 
-    coords_res = solve(num_vehicles)
-    return {"data": coords_res}
+@app.get("/solve/{num_vehicles}")
+async def solver(num_vehicles: int): 
+    data = solve(num_vehicles)
+    return {"data": data}
+
+
+@app.get("/return_dummy")
+async def return_dummy():
+    return {"data": "dummy response"}
