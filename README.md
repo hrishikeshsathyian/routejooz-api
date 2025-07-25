@@ -10,7 +10,7 @@ This repo serves as the **backend** for the [IJooz Route Optimisation Platform](
     <li>
         <a href="#about-the-project">About The Project</a>
         <ul>
-        <li><a href="#built-with">How It Works</a></li>
+        <li><a href="#how-it-works">How It Works</a></li>
         <li><a href="#built-with">Built With</a></li>
         </ul>
     </li>
@@ -21,8 +21,6 @@ This repo serves as the **backend** for the [IJooz Route Optimisation Platform](
         <li><a href="#installation">Installation</a></li>
         </ul>
     </li>
-    <li><a href="#usage">Usage</a></li>
-    <li><a href="#roadmap">Roadmap</a></li>
     <li><a href="#contact">Contact</a></li>
     <li><a href="#acknowledgments">Acknowledgments</a></li>
 </ol>
@@ -30,19 +28,22 @@ This repo serves as the **backend** for the [IJooz Route Optimisation Platform](
 
 ## About the Project
 
+
+Given a list of postal codes, this backend project generates optimized refill routes for iJooz drivers. 
+ 
+
 ### How It Works
 The backend process is be broken down into 3 main parts: <br>**Preprocessing, Cost Matrix Generation, Route Optimization**
+1. *Preprocessing* – Geocode vending machine postal codes into lat/lng coordinates (depot first).
+2. *Cost Matrix Generation* – Use Haversine distances and selectively enhance K-nearest neighbors with Google Distance Matrix API to reduce cost.
+3. *Route Optimization* – Solve using Google OR-Tools VRP with constraints like max driving time and fairness.
 
-1. *Preprocessing* - Given a CSV files of vending machines' IDs and their postal codes, the backend geocodes the postal codes into latitude and longitude coordinates while ensuring the depot as the first location 
-
-2. *Cost Matrix Generation* - First generates a NxN matrix using haversine distance between each pair and updates the K nearest neighbours' to accurate real time driving distance using Google Maps API. This is done to optimize time and cost by preventing excessive API calls.
-
-3. *Route Optimization* - Finalised distance matrix is then passed into Google OR-Tools Vehicle Routing Problem to generate optimised routes that minimizes total driving time, while adhering to constraints like max individual driving time and fairness.
 
 
 ### Built With
 [![FastAPI](https://img.shields.io/badge/fastapi-109989?style=for-the-badge&logo=FASTAPI&logoColor=white)](Fast-url)
-[![FastAPI](https://img.shields.io/badge/Google_Cloud-4285F4?style=for-the-badge&logo=google-cloud&logoColor=white)](Google-Cloud)
+[![GoogleCloud](https://img.shields.io/badge/Google_Cloud-4285F4?style=for-the-badge&logo=google-cloud&logoColor=white)](Google-Cloud)
+[![Python](https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54)](Python)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -87,5 +88,12 @@ http://127.0.0.1:8000/solve/3
 Hrishikesh Sathyian - [LinkedIn](https://www.linkedin.com/in/hrishikesh-sathyian/) - [Email](hrishikeshsathyian2002@gmail.com)
 
 Frontend Repository Link: [https://github.com/hrishikeshsathyian/route-jooz-frontend](https://github.com/hrishikeshsathyian/route-jooz-frontend)
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+
+## Acknowledgements
+
+This project was inspired from 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
