@@ -1,5 +1,5 @@
 <a id="readme-top"></a>
-# routejooz-api
+# routejooz-api 🍊 
 This repo serves as the **backend** for the [IJooz Route Optimisation Platform](https://github.com/hrishikeshsathyian/route-jooz-frontend) Project
 
 
@@ -49,7 +49,7 @@ The backend process is be broken down into 3 main parts: <br>**Preprocessing, Co
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-## Getting Started
+## Getting Started 🔓
 To get a local backend up and running, follow these simple steps.
 
 ### Prerequisites 
@@ -61,7 +61,7 @@ To get a local backend up and running, follow these simple steps.
 3. Set Up a Supabase Project at [Supabase](https://supabase.com/) and obtain the SUPABASE_URL and SUPABASE_KEY for that project
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-###  Running & Installation 
+###  Running & Installation 🏃
 
 1. Clone the repo
    ```sh
