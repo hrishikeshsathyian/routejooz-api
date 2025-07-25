@@ -102,13 +102,16 @@ To get a local backend up and running, follow these simple steps.
 
 Hrishikesh Sathyian - [LinkedIn](https://www.linkedin.com/in/hrishikesh-sathyian/) - [Email](hrishikeshsathyian2002@gmail.com)
 
-Frontend Repository Link: [https://github.com/hrishikeshsathyian/route-jooz-frontend](https://github.com/hrishikeshsathyian/route-jooz-frontend)
+Frontend Repository  -[ https://github.com/hrishikeshsathyian/route-jooz-frontend](https://github.com/hrishikeshsathyian/route-jooz-frontend)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
 ## Acknowledgements
 
-This project was inspired from this [blog](https://medium.com/@brockarnold/solving-a-capacitated-vehicle-routing-problem-with-google-or-tools-and-mapbox-a2eeb6b47bca) written by Brock Arnold about solving a capcitated vehicle routing problems
+This project was introduced to me and developed with contributions from [Lee Sutton](https://github.com/2403338leesutton)
+
+
+This project's skeleton was inspired from this [blog written by Brock Arnold ](https://medium.com/@brockarnold/solving-a-capacitated-vehicle-routing-problem-with-google-or-tools-and-mapbox-a2eeb6b47bca) about solving a capcitated vehicle routing problems.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
