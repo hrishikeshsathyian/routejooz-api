@@ -77,9 +77,22 @@ To get a local backend up and running, follow these simple steps.
     ```python
     uvicorn main:app --reload
    ```
-6. Test the endpoints as defined in main.py. For example, to test the results with 3 drivers, use Postman or Browser to test against 
-http://127.0.0.1:8000/solve/3
+
    
+### Usage
+
+1. Test the endpoints as defined in main.py. For example, to test the results with 3 drivers, use Postman or Browser to test against 
+    ```bash
+    http://127.0.0.1:8000/solve/3 
+    ```
+2. Open the generated routes_map.html file to view a quick draw up of the optimal routes
+    ```python
+    open routes_map.html
+   ```
+3. An example of the map would look like 
+<p align="center">
+  <img src="RoutesImage.png" alt="Example of Optimized Routes Map" width="600"/>
+</p>
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
