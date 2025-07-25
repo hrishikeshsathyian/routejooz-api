@@ -1,6 +1,6 @@
 <a id="readme-top"></a>
 # routejooz-api
-This repo serves as the **backend** for the [IJooz Route Optimisation Platform](https://google.com) Project
+This repo serves as the **backend** for the [IJooz Route Optimisation Platform](https://github.com/hrishikeshsathyian/route-jooz-frontend) Project
 
 
 > Note: This project is part of a **polyrepo** system. While the frontend is in a separate repo, this backend can still be run standalone for solving and viewing optimized routes.
@@ -19,17 +19,19 @@ This repo serves as the **backend** for the [IJooz Route Optimisation Platform](
         <ul>
         <li><a href="#prerequisites">Prerequisites</a></li>
         <li><a href="#installation">Installation</a></li>
+        <li><a href="#usage">Usage</a></li>
         </ul>
     </li>
-    <li><a href="#contact">Contact</a></li>
+    <li><a href="#contact">Contact and Links</a></li>
     <li><a href="#acknowledgments">Acknowledgments</a></li>
 </ol>
 
 
 ## About the Project
 
+Given a list of postal codes, this backend project generates optimized refill routes for iJooz drivers, accounting for constraints such as max available drivers and maximum single driver time. 
 
-Given a list of postal codes, this backend project generates optimized refill routes for iJooz drivers. 
+Minimizes cost incurred by iJooz by reducing **total driving time** (hence petrol cost) and minimizing **total drivers used**.
  
 
 ### How It Works
@@ -96,7 +98,7 @@ To get a local backend up and running, follow these simple steps.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-## Contact
+## Contact and Links
 
 Hrishikesh Sathyian - [LinkedIn](https://www.linkedin.com/in/hrishikesh-sathyian/) - [Email](hrishikeshsathyian2002@gmail.com)
 
@@ -107,6 +109,6 @@ Frontend Repository Link: [https://github.com/hrishikeshsathyian/route-jooz-fron
 
 ## Acknowledgements
 
-This project was inspired from 
+This project was inspired from this [blog](https://medium.com/@brockarnold/solving-a-capacitated-vehicle-routing-problem-with-google-or-tools-and-mapbox-a2eeb6b47bca) written by Brock Arnold about solving a capcitated vehicle routing problems
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
