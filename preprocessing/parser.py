@@ -16,7 +16,7 @@ class LocationObject(BaseModel):
 
 # Load environment variables from a .env file
 dotenv.load_dotenv()
-GOOGLE_MAPS_API_KEY = os.getenv("GOOGLE_MAPS_API_KEY")  # set this in your environment
+GOOGLE_MAPS_API_KEY = os.getenv("GOOGLE_MAPS_API_KEY") 
 
 def geocode_postal_code(postal_code: str) -> dict:
     url = "https://maps.googleapis.com/maps/api/geocode/json"
@@ -26,7 +26,7 @@ def geocode_postal_code(postal_code: str) -> dict:
         "key": GOOGLE_MAPS_API_KEY
     }
     response = requests.get(url, params=params)
-    response.raise_for_status()  # raises HTTPError for bad status
+    response.raise_for_status()  
     data = response.json()
     print
     if data["status"] != "OK":
