@@ -36,7 +36,7 @@ Minimizes cost incurred by iJooz by reducing **total driving time** (hence petro
 
 ### How It Works
 The backend process is be broken down into 3 main parts: <br>**Preprocessing, Cost Matrix Generation, Route Optimization**
-1. *Preprocessing* – Geocode vending machine postal codes into lat/lng coordinates (depot first).
+1. *Preprocessing* – Geocode vending machine postal codes into lat/lng coordinates (depot first) using Google Maps API.
 2. *Cost Matrix Generation* – Use Haversine distances and selectively enhance K-nearest neighbors with Google Distance Matrix API to reduce cost.
 3. *Route Optimization* – Solve using Google OR-Tools VRP with constraints like max driving time and fairness.
 
